@@ -1,0 +1,7 @@
+-- List all of the students in a course and all of their scores on every assignment
+SELECT s.*, a.title, g.earned_points
+FROM databaseproject.student s
+INNER JOIN databaseproject.grades g ON s.student_id = g.student_id
+INNER JOIN databaseproject.assignment a ON g.assignment_id = a.assignment_id
+WHERE a.course_id = your_course_id
+ORDER BY s.student_id, a.assignment_id;
