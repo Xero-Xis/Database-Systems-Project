@@ -30,3 +30,50 @@ Click your new connection, which you will see under the "MySQL Connections" sect
 ![image](https://github.com/Xero-Xis/Database-Systems-Project/assets/102191390/0513ebe0-5c56-4ad5-84dd-60bcc6bcd8fa)
 
 
+Step 6:
+At the top left of the screen you will see a triple-segmented cylinder. Hover your cursor over this, and it will say "Create a new schema in the connected server." Click this button, and your screen should look similar to this: 
+
+![image](https://github.com/Xero-Xis/Database-Systems-Project/assets/102191390/04b247c9-2e68-45e3-8c89-e2aaa5e537de)
+
+In the Name section, name it "databaseproject" (no quotes).
+
+Step 7:
+After completing Step 6, you should see a screen similar to this: 
+![image](https://github.com/Xero-Xis/Database-Systems-Project/assets/102191390/59d81f64-2a11-4911-afa6-6d713aa7b5eb)
+
+
+
+(blueberryapple is a placeholder. This will be the aforementioned "databaseproject")
+
+Click "Apply".
+
+
+Step 8:
+Download the following files from the main branch of this github:
+
+databaseproject_assignment.sql
+databaseproject_course.sql
+databaseproject_department.sql
+databaseproject_distribution.sql
+databaseproject_enrollment.sql
+databaseproject_grades.sql
+databaseproject_student.sql
+
+Then, go back to MySQL Workbench. Enter your desired connection and then click the "Server" button at the top of the screen. One of its options will be "Data Import". It will look like this:
+![image](https://github.com/Xero-Xis/Database-Systems-Project/assets/102191390/889474a4-a360-42ed-8f5a-19fb821ec157)
+
+Click "Data Import". 
+
+
+Step 9:
+![image](https://github.com/Xero-Xis/Database-Systems-Project/assets/102191390/a9b4febf-72e2-4490-9b1c-2825fb153bb3)
+
+For the Import from Dump Project Folder placeholder: find the download path where the imported data you downloaded is (the Github files). 
+
+Under Import Schema click "databaseproject", and make sure all Schema Objects are marked with a blue checkmark which shows they are selected. Then, click "Start Import." You can check Import Progress by clicking Import Progress.
+
+
+
+
+
+
