@@ -76,5 +76,8 @@ Under Import Schema click "databaseproject", and make sure all Schema Objects ar
 
 
 
+After doing this, you should have access to the databaseproject schema and all of its contents. THIS INCLUDES SAMPLE DATA TO TEST THE TASKS.
+
+
 
 
