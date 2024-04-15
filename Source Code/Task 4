@@ -1,0 +1,14 @@
+-- Finds average score for a specific assignment
+SELECT AVG(earned_points) AS average_score
+FROM databaseproject.grades
+WHERE assignment_id = your_assignment_id;
+
+-- Finds max score for a specific assignment
+SELECT MAX(earned_points) AS highest_score
+FROM databaseproject.grades
+WHERE assignment_id = your_assignment_id;
+
+-- Finds the min score for a specific assignment
+SELECT MIN(earned_points) AS lowest_score
+FROM databaseproject.grades
+WHERE assignment_id = your_assignment_id;
