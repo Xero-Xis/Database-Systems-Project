@@ -72,6 +72,7 @@ For the Import from Dump Project Folder placeholder: find the download path wher
 
 Under Import Schema click "databaseproject", and make sure all Schema Objects are marked with a blue checkmark which shows they are selected. Then, click "Start Import." You can check Import Progress by clicking Import Progress.
 
+<img width="1440" alt="Screenshot 2024-04-15 at 6 19 01 PM" src="https://github.com/Xero-Xis/Database-Systems-Project/assets/102116519/68509961-726c-4a79-b8e6-4bce9ffedf02">
 
 
 
