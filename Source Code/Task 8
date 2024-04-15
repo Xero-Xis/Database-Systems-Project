@@ -1,0 +1,20 @@
+-- Update the percentage for the "Test" assignment type to 35%
+UPDATE databaseproject.Distribution
+SET percentage = new_percentage
+WHERE course_id = target_course_id AND assignment_type = 'target_assignment_type';
+
+-- Calculate the total percentage for the course
+SET @total_percentage = (
+    SELECT SUM(percentage)
+    FROM databaseproject.Distribution
+    WHERE course_id = target_course_id
+);
+
+
+-- Calculate the adjustment needed for other categories
+SET @adjustment = (100 - @total_percentage) / (SELECT COUNT(*) FROM databaseproject.Distribution WHERE course_id = target_course_id AND assignment_type != 'target_assignment_type');
+
+-- Update the percentage for other categories
+UPDATE databaseproject.Distribution
+SET percentage = percentage + @adjustment
+WHERE course_id = target_course_id AND assignment_type != 'target_assignment_type';
