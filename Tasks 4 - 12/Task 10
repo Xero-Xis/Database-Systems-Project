@@ -1,0 +1,5 @@
+-- Add 2 points just to those students whose last name contains a ‘Q’
+UPDATE databaseproject.grades g
+INNER JOIN databaseproject.student s ON g.student_id = s.student_id
+SET g.earned_points = g.earned_points + 2
+WHERE s.l_name LIKE '%Q%';
