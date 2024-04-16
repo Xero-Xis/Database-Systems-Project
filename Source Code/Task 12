@@ -1,0 +1,13 @@
+-- Compute the grade for a student, where the lowest score for a given category is dropped.
+SELECT s.student_id,
+       s.f_name,
+       s.l_name,
+       (SUM(g.earned_points) - MIN(g.earned_points)) AS total_earned_points,
+       (SUM(a.total_points) - MIN(a.total_points)) AS total_possible_points,
+       (((SUM(g.earned_points) - MIN(g.earned_points)) / (SUM(a.total_points) - MIN(a.total_points))) * 100) AS grade_percentage
+FROM databaseproject.student s
+INNER JOIN databaseproject.grades g ON s.student_id = g.student_id
+INNER JOIN databaseproject.assignment a ON g.assignment_id = a.assignment_id
+WHERE s.student_id = student_id
+  AND a.course_id = course_id
+GROUP BY s.student_id, s.f_name, s.l_name;
