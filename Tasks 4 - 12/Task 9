@@ -1,0 +1,4 @@
+-- Add 2 points to the score of each student on an assignment;
+UPDATE databaseproject.grades
+SET earned_points = earned_points + 2
+WHERE assignment_id = target_assignment_id
