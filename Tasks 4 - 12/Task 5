@@ -1,0 +1,5 @@
+-- List all of the students in a given course, replace given_course_id with a course id
+SELECT s.*
+FROM databaseproject.student s
+INNER JOIN databaseproject.enrollment e ON s.student_id = e.student_id
+WHERE e.course_id = given_course_id;
