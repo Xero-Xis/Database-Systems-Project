@@ -1,0 +1,221 @@
+-- CREATING TABLES CODE
+
+
+-- Assignment
+CREATE TABLE `assignment` (
+  `assignment_id` int NOT NULL AUTO_INCREMENT,
+  `course_id` int DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `total_points` int DEFAULT NULL,
+  `assignment_type` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`assignment_id`),
+  KEY `course_id` (`course_id`),
+  CONSTRAINT `assignment_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+-- Course
+CREATE TABLE `course` (
+  `course_id` int NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `course_name` varchar(255) DEFAULT NULL,
+  `semester` varchar(50) DEFAULT NULL,
+  `department_id` int DEFAULT NULL,
+  `course_number` int DEFAULT NULL,
+  `year` int DEFAULT NULL,
+  PRIMARY KEY (`course_id`),
+  KEY `department_id` (`department_id`),
+  CONSTRAINT `course_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `department` (`department_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+-- Department
+CREATE TABLE `department` (
+  `department_id` int NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`department_id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+-- Distribution
+CREATE TABLE `distribution` (
+  `Distribution_id` int NOT NULL,
+  `course_id` int DEFAULT NULL,
+  `assignment_type` varchar(100) DEFAULT NULL,
+  `percentage` float DEFAULT NULL,
+  PRIMARY KEY (`Distribution_id`),
+  KEY `course_id` (`course_id`),
+  KEY `assignment_type` (`assignment_type`),
+  CONSTRAINT `distribution_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+-- Enrollment
+CREATE TABLE `enrollment` (
+  `enrollment_id` int NOT NULL AUTO_INCREMENT,
+  `student_id` int DEFAULT NULL,
+  `course_id` int DEFAULT NULL,
+  PRIMARY KEY (`enrollment_id`),
+  KEY `student_id` (`student_id`),
+  KEY `course_id` (`course_id`),
+  CONSTRAINT `enrollment_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`),
+  CONSTRAINT `enrollment_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+-- Grades 
+CREATE TABLE `grades` (
+  `student_id` int NOT NULL,
+  `assignment_id` int NOT NULL,
+  `earned_points` int DEFAULT NULL,
+  PRIMARY KEY (`student_id`,`assignment_id`),
+  KEY `grades_ibfk_2` (`assignment_id`),
+  CONSTRAINT `grades_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`),
+  CONSTRAINT `grades_ibfk_2` FOREIGN KEY (`assignment_id`) REFERENCES `assignment` (`assignment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+-- Student
+CREATE TABLE `student` (
+  `student_id` int NOT NULL,
+  `f_name` varchar(255) DEFAULT NULL,
+  `l_name` varchar(255) DEFAULT NULL,
+  `major` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`student_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+
+
+
+-- INSERTING VALUE CODE
+
+-- Inserting values into the Department table
+INSERT INTO databaseproject.department (department_id, name) VALUES
+(1, 'Computer Science'),
+(2, 'Mathematics'),
+(3, 'Physics'),
+(4, 'Biology'),
+(5, 'Chemistry'),
+(6, 'History');
+
+-- Inserting values into the Course table
+INSERT INTO databaseproject.course (course_id, name, course_name, semester, department_id, course_number, year) VALUES
+(101, 'CS101', 'Introduction to Computer Science', 'Fall', 1, 101, 2023),
+(102, 'MATH201', 'Calculus I', 'Spring', 2, 201, 2024),
+(103, 'PHY301', 'Mechanics', 'Fall', 3, 301, 2023),
+(104, 'BIO101', 'Introduction to Biology', 'Fall', 4, 101, 2023),
+(105, 'CHEM201', 'Organic Chemistry', 'Spring', 5, 201, 2024),
+(106, 'HIST301', 'World History', 'Fall', 6, 301, 2023);
+
+-- Inserting values into the Student table
+INSERT INTO databaseproject.student (student_id, f_name, l_name, major) VALUES
+(1, 'John', 'Doe', 'Computer Science'),
+(2, 'Jane', 'Smith', 'Mathematics'),
+(3, 'David', 'Brown', 'Physics'),
+(4, 'Emily', 'Johnson', 'Biology'),
+(5, 'Michael', 'Williams', 'Chemistry'),
+(6, 'Sophia', 'Jones', 'History'),
+(7, 'Daniel', 'Brown', 'Biology'),
+(8, 'Olivia', 'Davis', 'Chemistry'),
+(9, 'William', 'Miller', 'History'),
+(10, 'Emma', 'Wilson', 'Biology'),
+(11, 'Alexander', 'Martinez', 'Chemistry'),
+(12, 'Mia', 'Taylor', 'History'),
+(13, 'Quincy', 'Quinn', 'Computer Science');
+
+-- Inserting values into the Assignment table
+INSERT INTO databaseproject.assignment (assignment_id, course_id, title, total_points, assignment_type) VALUES
+(1, 101, 'Participation', 100, 'Participation'),
+(2, 101, 'Homework 1', 50, 'Homework'),
+(3, 101, 'Test 1', 100, 'Test'),
+(4, 101, 'Project 1', 200, 'Project'),
+(5, 102, 'Homework 1', 50, 'Homework'),
+(6, 102, 'Homework 2', 50, 'Homework'),
+(7, 102, 'Test 1', 100, 'Test'),
+(8, 102, 'Test 2', 100, 'Test'),
+(9, 103, 'Homework 1', 50, 'Homework'),
+(10, 103, 'Homework 2', 50, 'Homework'),
+(11, 103, 'Test 1', 100, 'Test'),
+(12, 103, 'Project 1', 200, 'Project'),
+(13, 104, 'Participation', 100, 'Participation'),
+(14, 104, 'Homework 1', 50, 'Homework'),
+(15, 104, 'Test 1', 100, 'Test'),
+(16, 104, 'Project 1', 200, 'Project'),
+(17, 105, 'Homework 1', 50, 'Homework'),
+(18, 105, 'Homework 2', 50, 'Homework'),
+(19, 105, 'Test 1', 100, 'Test'),
+(20, 105, 'Test 2', 100, 'Test'),
+(21, 106, 'Homework 1', 50, 'Homework'),
+(22, 106, 'Homework 2', 50, 'Homework'),
+(23, 106, 'Test 1', 100, 'Test'),
+(24, 106, 'Project 1', 200, 'Project'),
+(30, 101, 'Participation 2', 100, 'Participation'),
+(31, 101, 'Homework 2', 50, 'Homework'),
+(32, 101, 'Test 2', 100, 'Test'),
+(33, 101, 'Project 2', 200, 'Project');
+
+-- Inserting values into the Distribution table
+INSERT INTO databaseproject.distribution (Distribution_id, course_id, assignment_type, percentage) VALUES
+(1, 101, 'Participation', 10),
+(2, 101, 'Homework', 20),
+(3, 101, 'Test', 50),
+(4, 101, 'Project', 20),
+(5, 102, 'Homework', 25),
+(6, 102, 'Test', 50),
+(7, 102, 'Project', 25),
+(8, 103, 'Homework', 20),
+(9, 103, 'Test', 50),
+(10, 103, 'Project', 30),
+(11, 104, 'Participation', 10),
+(12, 104, 'Homework', 20),
+(13, 104, 'Test', 50),
+(14, 104, 'Project', 20),
+(15, 105, 'Homework', 25),
+(16, 105, 'Test', 50),
+(17, 105, 'Project', 25),
+(18, 106, 'Homework', 20),
+(19, 106, 'Test', 50),
+(20, 106, 'Project', 30);
+
+-- Inserting values into the Grades table (example for CS101)
+INSERT INTO databaseproject.grades (student_id, assignment_id, earned_points) VALUES
+(1, 1, 90), -- John Doe earned 90 points for participation
+(1, 2, 45), -- John Doe earned 45 points for Homework 1
+(1, 3, 80), -- John Doe earned 80 points for Test 1
+(1, 4, 180), -- John Doe earned 180 points for Project 1
+(4, 13, 85), -- Emily Johnson earned 85 points for participation
+(4, 14, 42), -- Emily Johnson earned 42 points for Homework 1
+(4, 15, 75), -- Emily Johnson earned 75 points for Test 1
+(4, 16, 190), -- Emily Johnson earned 190 points for Project 1
+(5, 13, 80), -- Michael Williams earned 80 points for participation
+(5, 14, 45), -- Michael Williams earned 45 points for Homework 1
+(5, 15, 70), -- Michael Williams earned 70 points for Test 1
+(5, 16, 180), -- Michael Williams earned 180 points for Project 1
+(6, 13, 90), -- Sophia Jones earned 90 points for participation
+(6, 14, 50), -- Sophia Jones earned 50 points for Homework 1
+(6, 15, 85), -- Sophia Jones earned 85 points for Test 1
+(6, 16, 200), -- Sophia Jones earned 200 points for Project 1
+(7, 13, 75), -- Daniel Brown earned 75 points for participation
+(7, 14, 40), -- Daniel Brown earned 40 points for Homework 1
+(7, 15, 65), -- Daniel Brown earned 65 points for Test 1
+(7, 16, 170), -- Daniel Brown earned 170 points for Project 1
+(8, 13, 85), -- Olivia Davis earned 85 points for participation
+(8, 14, 45), -- Olivia Davis earned 45 points for Homework 1
+(8, 15, 75), -- Olivia Davis earned 75 points for Test 1
+(8, 16, 180), -- Olivia Davis earned 180 points for Project 1
+(9, 13, 80), -- William Miller earned 80 points for participation
+(9, 14, 42), -- William Miller earned 42 points for Homework 1
+(9, 15, 70), -- William Miller earned 70 points for Test 1
+(9, 16, 170), -- William Miller earned 170 points for Project 1
+(10, 13, 85), -- Emma Wilson earned 85 points for participation
+(10, 14, 45), -- Emma Wilson earned 45 points for Homework 1
+(10, 15, 75), -- Emma Wilson earned 75 points for Test 1
+(10, 16, 180), -- Emma Wilson earned 180 points for Project 1
+(11, 13, 75), -- Alexander Martinez earned 75 points for participation
+(11, 14, 40), -- Alexander Martinez earned 40 points for Homework 1
+(11, 15, 65), -- Alexander Martinez earned 65 points for Test 1
+(11, 16, 170), -- Alexander Martinez earned 170 points for Project 1
+(12, 13, 80), -- Mia Taylor earned 80 points for participation
+(12, 14, 42), -- Mia Taylor earned 42 points for Homework 1
+(12, 15, 70), -- Mia Taylor earned 70 points for Test 1
+(12, 16, 170), -- Mia Taylor earned 170 points for Project 1
+(13, 34, 90),  -- Participation 2
+(13, 35, 40),  -- Homework 2
+(13, 36, 85),  -- Test 2
+(13, 37, 190); -- Project 2
